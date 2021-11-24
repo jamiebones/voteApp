@@ -1,0 +1,27 @@
+.idea-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 25%;
+  background-color: #f5f5f5;
+  margin: 10px;
+}
+
+.idea-div{
+  padding: 20px;
+}
+
+.div-vote{
+  display: inline;
+}
+
+.row-score{
+  display: flex;
+  justify-content: space-around;
+}
+
+.display-div{
+  display: flex;
+  
+}

@@ -7,13 +7,16 @@ export default SaveIdeas = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (idea.length > 10) {
-      IdeasCollection.insert({ idea : idea }, (err, ideaId) => {
-        if (err) {
-          alert(err);
-        } else {
-          alert(ideaId);
+      IdeasCollection.insert(
+        { idea: idea, upVote: 0, downVote: 0 },
+        (err, ideaId) => {
+          if (err) {
+            alert(err);
+          } else {
+            alert(ideaId);
+          }
         }
-      });
+      );
       setIdea("");
     } else {
       alert("Idea must be at least 10 characters long");
