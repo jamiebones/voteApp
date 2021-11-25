@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { IdeasCollection } from "../../api/ideas/ideas";
+import { Meteor } from "meteor/meteor";
 
 export default SaveIdeas = () => {
   const [idea, setIdea] = useState("");
@@ -7,17 +8,14 @@ export default SaveIdeas = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (idea.length > 10) {
-      IdeasCollection.insert(
-        { idea: idea, upVote: 0, downVote: 0 },
-        (err, ideaId) => {
-          if (err) {
-            alert(err);
-          } else {
-            alert(ideaId);
-          }
+      Meteor.call("ideas.insert", idea, (error) => {
+        if (error) {
+          alert(error);
+        } else {
+          setIdea("");
         }
-      );
-      setIdea("");
+      });
+     
     } else {
       alert("Idea must be at least 10 characters long");
     }

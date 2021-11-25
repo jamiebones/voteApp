@@ -6,9 +6,19 @@ import { IdeasCollection } from "../../api/ideas/ideas";
 import { useTracker } from "meteor/react-meteor-data";
 
 export const App = () => {
-  const ideas = useTracker(() => {
-    return IdeasCollection.find({}, { sort: { upVote: -1 } }).fetch();
+  const {ideas,loading} = useTracker(() => {
+    const handle = Meteor.subscribe("ideas.allIdeas");
+    const data = IdeasCollection.find({}, { sort: { upVote: -1 } }).fetch();
+    return {loading: !handle.ready(), ideas: data};
   }, []);
+
+  if (loading) {
+    <p>Application loading.....</p>
+
+  }
+
+
+
   return (
     <div>
       <h1>Vote Application</h1>

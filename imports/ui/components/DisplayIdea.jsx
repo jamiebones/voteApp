@@ -3,17 +3,17 @@ import { IdeasCollection } from "../../api/ideas/ideas";
 
 export default DisplayIdea = ({ idea: { upVote, downVote, _id, idea } }) => {
   const handleUpVote = (id) => {
-    IdeasCollection.update(id, { $inc: { upVote: 1 } }, (err, res) => {
-      if (err) {
-        console.log(err);
+    Meteor.call("ideas.upVote", id, (error) => {
+      if (error) {
+        alert(error);
       }
     });
   };
 
   const handleDownVote = (id) => {
-    IdeasCollection.update(id, { $inc: { downVote: 1 } }, (err, res) => {
-      if (err) {
-        console.log(err);
+    Meteor.call("ideas.downVote", id, (error) => {
+      if (error) {
+        alert(error);
       }
     });
   };
