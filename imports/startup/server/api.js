@@ -1,2 +1,2 @@
 import "../../api/ideas/server/publication";
-import "../../api/ideas/server/ideas";
+import "../../api/ideas/ideas";
